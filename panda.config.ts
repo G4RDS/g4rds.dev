@@ -3,6 +3,7 @@ import { defineConfig, defineGlobalStyles } from '@pandacss/dev';
 const globalCss = defineGlobalStyles({
   'html, body': {
     h: '100%',
+    bg: 'gray.950',
     color: 'token(colors.text.base)',
     fontSize: '16px',
     lineHeight: '1.5em',
@@ -40,6 +41,7 @@ export default defineConfig({
             700: { value: '#334155' },
             800: { value: '#1e293b' },
             900: { value: '#0f172a' },
+            950: { value: '#020617' },
             alpha50: { value: 'rgba(100, 116, 139, 0.5)' },
           },
           red: {
@@ -92,9 +94,9 @@ export default defineConfig({
       semanticTokens: {
         colors: {
           text: {
-            dark: { value: '{colors.gray.900}' },
-            base: { value: '{colors.gray.700}' },
-            light: { value: '{colors.gray.500}' },
+            light: { value: '{colors.gray.100}' },
+            base: { value: '{colors.gray.300}' },
+            dark: { value: '{colors.gray.500}' },
           },
           border: {
             image: { value: 'rgba(0, 0, 0, 0.05)' },

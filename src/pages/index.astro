@@ -1,5 +1,6 @@
 ---
 import { css } from '../../styled-system/css';
+import { circle, flex, grid } from '../../styled-system/patterns';
 import MainLayout from '../layouts/MainLayout.astro';
 ---
 
@@ -11,6 +12,48 @@ import MainLayout from '../layouts/MainLayout.astro';
       mx: 'auto',
     })}
   >
-    hello
+    <div
+      class={grid({
+        gridTemplateColumns: 'auto 1fr',
+        columnGap: 6,
+        mt: 48,
+      })}
+    >
+      <img
+        class={circle({
+          size: '16',
+        })}
+        src="/g4rds.webp"
+        alt=""
+      />
+      <div class={flex({ alignItems: 'center' })}>
+        <p
+          class={css({
+            color: 'text.light',
+            fontSize: '1.5rem',
+            fontWeight: 600,
+          })}
+        >
+          G4RDS
+        </p>
+      </div>
+      <div></div>
+      <div
+        class={css({
+          color: 'text.dark',
+          '& > p:not(:first-child)': {
+            mt: 2,
+          },
+        })}
+      >
+        <p>
+          Front-End Engineer embracing the intersection of design and coding.
+        </p>
+        <p>
+          Passionate about product development and creating intuitive user
+          experiences.
+        </p>
+      </div>
+    </div>
   </div>
 </MainLayout>

@@ -30,41 +30,30 @@ const computedTitle = title ? `${title} - G4RDS.dev` : 'G4RDS.dev';
         top: 0,
         left: 0,
         right: 0,
-        borderBottom: '1px solid token(colors.gray.200)',
-        bg: 'white',
+        borderBottom: '1px solid token(colors.gray.800)',
+        bg: 'gray.950',
       })}
     >
       <header
         class={flex({
           alignItems: 'center',
-          justifyContent: 'space-between',
+          justifyContent: 'end',
           maxW: 'token(breakpoints.lg)',
           h: 16,
           mx: 'auto',
           px: 4,
         })}
       >
-        <a href="/">
-          <h1
-            class={css({
-              color: 'gray.900',
-              fontSize: '16px',
-              fontWeight: 600,
-            })}
-          >
-            G4RDS.dev
-          </h1>
-        </a>
         <nav>
           <ul
             class={flex({
               alignItems: 'center',
               gap: 4,
-              '& a': { color: 'gray.900' },
+              '& a': { color: 'text.light' },
             })}
           >
             <li>
-              <a href="/works">Works</a>
+              <a href="/">Home</a>
             </li>
           </ul>
         </nav>
