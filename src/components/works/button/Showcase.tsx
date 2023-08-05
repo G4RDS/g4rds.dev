@@ -12,6 +12,7 @@ export const Showcase = () => {
         fontSize: 18,
         fontWeight: 600,
         textShadow: '0 1px 2px rgba(29, 78, 216, 0.5)',
+        boxShadow: '0 1px 1px rgba(0, 0, 0, 0.1)',
       })}
     >
       <span
