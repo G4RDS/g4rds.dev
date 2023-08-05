@@ -1,0 +1,13 @@
+---
+import { getEntryBySlug } from 'astro:content';
+import BasicWorkLayout from '../../layouts/work/BasicWorkLayout.astro';
+import { Showcase } from '../../components/works/button/Showcase';
+
+const work = await getEntryBySlug('works', 'gradient-border-button');
+const { Content } = await work.render();
+---
+
+<BasicWorkLayout title={work.data.title}>
+  <Showcase slot="showcase" client:load />
+  <Content />
+</BasicWorkLayout>

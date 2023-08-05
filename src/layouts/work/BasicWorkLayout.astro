@@ -1,0 +1,51 @@
+---
+import {} from 'astro/types';
+import MainLayout from '../MainLayout.astro';
+import { css } from '../../../styled-system/css';
+import { center } from '../../../styled-system/patterns';
+
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<MainLayout title={title}>
+  <div
+    class={css({
+      maxW: 'token(breakpoints.md)',
+      minH: '100%',
+      mx: 'auto',
+    })}
+  >
+    <div
+      class={center({
+        minH: '30vh',
+        mt: 24,
+        borderRadius: 'lg',
+        border: '1px solid token(colors.gray.800)',
+        bg: 'white',
+      })}
+    >
+      <slot name="showcase" />
+    </div>
+    <h1
+      class={css({
+        mt: 16,
+        fontSize: '1.5rem',
+        lineHeight: 1.5,
+        fontWeight: 600,
+      })}
+    >
+      {title}
+    </h1>
+    <slot />
+  </div>
+</MainLayout>
+
+<style is:global>
+  p {
+    margin-top: 16px;
+    line-height: 1.7;
+  }
+</style>

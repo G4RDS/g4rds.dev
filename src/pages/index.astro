@@ -1,7 +1,10 @@
 ---
+import { getCollection } from 'astro:content';
 import { css } from '../../styled-system/css';
 import { circle, flex, grid } from '../../styled-system/patterns';
 import MainLayout from '../layouts/MainLayout.astro';
+
+const works = await getCollection('works');
 ---
 
 <MainLayout>
@@ -55,5 +58,14 @@ import MainLayout from '../layouts/MainLayout.astro';
         </p>
       </div>
     </div>
+    <ul>
+      {
+        works.map((work) => (
+          <li>
+            <a href={`/works/${work.slug}`}>{work.data.title}</a>
+          </li>
+        ))
+      }
+    </ul>
   </div>
 </MainLayout>
