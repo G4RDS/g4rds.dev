@@ -4,6 +4,7 @@ const worksCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     publishedAt: z.date(),
+    eyeCatchUrl: z.string(),
   }),
 });
 

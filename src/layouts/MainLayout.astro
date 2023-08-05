@@ -23,7 +23,7 @@ const computedTitle = title ? `${title} - G4RDS.dev` : 'G4RDS.dev';
     <meta name="generator" content={Astro.generator} />
     <title>{computedTitle}</title>
   </head>
-  <body>
+  <body class={flex({ direction: 'column', alignItems: 'stretch' })}>
     <div
       class={css({
         position: 'fixed',
@@ -37,7 +37,7 @@ const computedTitle = title ? `${title} - G4RDS.dev` : 'G4RDS.dev';
       <header
         class={flex({
           alignItems: 'center',
-          justifyContent: 'end',
+          justifyContent: 'start',
           maxW: 'token(breakpoints.lg)',
           h: 16,
           mx: 'auto',
@@ -61,7 +61,7 @@ const computedTitle = title ? `${title} - G4RDS.dev` : 'G4RDS.dev';
     </div>
     <main
       class={css({
-        h: '100%',
+        flex: '1',
         pt: 16,
       })}
     >

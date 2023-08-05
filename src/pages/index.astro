@@ -11,7 +11,6 @@ const works = await getCollection('works');
   <div
     class={css({
       maxW: 'token(breakpoints.sm)',
-      minH: '100%',
       mx: 'auto',
     })}
   >
@@ -19,18 +18,18 @@ const works = await getCollection('works');
       class={grid({
         gridTemplateColumns: 'auto 1fr',
         columnGap: 6,
-        mt: 48,
+        mt: 32,
       })}
     >
       <img
         class={circle({
           size: '16',
         })}
-        src="/g4rds.webp"
+        src="/img/g4rds.webp"
         alt=""
       />
       <div class={flex({ alignItems: 'center' })}>
-        <p
+        <h1
           class={css({
             color: 'text.light',
             fontSize: '1.5rem',
@@ -38,7 +37,7 @@ const works = await getCollection('works');
           })}
         >
           G4RDS
-        </p>
+        </h1>
       </div>
       <div></div>
       <div
@@ -58,14 +57,59 @@ const works = await getCollection('works');
         </p>
       </div>
     </div>
-    <ul>
-      {
-        works.map((work) => (
-          <li>
-            <a href={`/works/${work.slug}`}>{work.data.title}</a>
-          </li>
-        ))
-      }
-    </ul>
+    <section
+      class={css({
+        mt: 32,
+      })}
+    >
+      <h2
+        class={css({
+          color: 'text.light',
+          fontSize: '1.5rem',
+          fontWeight: 600,
+        })}
+      >
+        Works
+      </h2>
+      <ul
+        class={grid({
+          mt: 4,
+          gridTemplateColumns: 'repeat(auto-fill, minmax(16rem, 1fr))',
+        })}
+      >
+        {
+          works.map((work) => (
+            <li>
+              <a
+                href={`/works/${work.slug}`}
+                class={css({
+                  display: 'block',
+                  p: 4,
+                  borderRadius: 'md',
+                  bg: 'gray.900',
+                })}
+              >
+                <img
+                  src={work.data.eyeCatchUrl}
+                  class={css({
+                    display: 'block',
+                    width: '100%',
+                    bg: 'gray.800',
+                    borderRadius: 'md',
+                    aspectRatio: '16 / 9',
+                    overflow: 'hidden',
+                  })}
+                />
+                <div class={css({ mt: 4 })}>
+                  <h3 class={css({ color: 'text.base', fontWeight: 600 })}>
+                    {work.data.title}
+                  </h3>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
   </div>
 </MainLayout>
