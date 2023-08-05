@@ -1,0 +1,86 @@
+---
+import { css } from '../../styled-system/css';
+import { flex } from '../../styled-system/patterns';
+
+interface Props {
+  title?: string;
+}
+const { title } = Astro.props;
+const computedTitle = title ? `${title} - G4RDS.dev` : 'G4RDS.dev';
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{computedTitle}</title>
+  </head>
+  <body>
+    <div
+      class={css({
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        borderBottom: '1px solid token(colors.gray.200)',
+        bg: 'white',
+      })}
+    >
+      <header
+        class={flex({
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          maxW: 'token(breakpoints.lg)',
+          h: 16,
+          mx: 'auto',
+          px: 4,
+        })}
+      >
+        <a href="/">
+          <h1
+            class={css({
+              color: 'gray.900',
+              fontSize: '16px',
+              fontWeight: 600,
+            })}
+          >
+            G4RDS.dev
+          </h1>
+        </a>
+        <nav>
+          <ul
+            class={flex({
+              alignItems: 'center',
+              gap: 4,
+              '& a': { color: 'gray.900' },
+            })}
+          >
+            <li>
+              <a href="/works">Works</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+    <main
+      class={css({
+        h: '100%',
+        pt: 16,
+      })}
+    >
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  @layer reset, base, tokens, recipes, utilities;
+</style>
