@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import { css } from '../../styled-system/css';
 import { circle, flex, grid } from '../../styled-system/patterns';
 import MainLayout from '../layouts/MainLayout.astro';
+import { workComponents } from '../constants/workComponents';
 
 const works = await getCollection('works');
 ---
@@ -10,8 +11,9 @@ const works = await getCollection('works');
 <MainLayout>
   <div
     class={css({
-      maxW: 'token(breakpoints.sm)',
+      maxW: 'token(breakpoints.lg)',
       mx: 'auto',
+      px: 4,
     })}
   >
     <div
@@ -78,36 +80,39 @@ const works = await getCollection('works');
         })}
       >
         {
-          works.map((work) => (
-            <li>
-              <a
-                href={`/works/${work.slug}`}
-                class={css({
-                  display: 'block',
-                  p: 4,
-                  borderRadius: 'md',
-                  bg: 'gray.900',
-                })}
-              >
-                <img
-                  src={work.data.eyeCatchUrl}
+          works.map((work) => {
+            const Component = workComponents[work.slug];
+            return (
+              <li>
+                <a
+                  href={`/works/${work.slug}`}
                   class={css({
                     display: 'block',
-                    width: '100%',
-                    bg: 'gray.800',
+                    p: 4,
                     borderRadius: 'md',
-                    aspectRatio: '16 / 9',
-                    overflow: 'hidden',
+                    bg: 'gray.900',
                   })}
-                />
-                <div class={css({ mt: 4 })}>
-                  <h3 class={css({ color: 'text.base', fontWeight: 600 })}>
-                    {work.data.title}
-                  </h3>
-                </div>
-              </a>
-            </li>
-          ))
+                >
+                  <div
+                    class={css({
+                      width: '100%',
+                      bg: 'gray.800',
+                      borderRadius: 'md',
+                      aspectRatio: '16 / 9',
+                      overflow: 'hidden',
+                    })}
+                  >
+                    <Component />
+                  </div>
+                  <div class={css({ mt: 4 })}>
+                    <h3 class={css({ color: 'text.base', fontWeight: 600 })}>
+                      {work.data.title}
+                    </h3>
+                  </div>
+                </a>
+              </li>
+            );
+          })
         }
       </ul>
     </section>

@@ -1,0 +1,72 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { css } from '../../../styled-system/css';
+import { CollectionEntry, getCollection } from 'astro:content';
+import { workComponents } from '../../constants/workComponents';
+
+export const getStaticPaths = async () => {
+  const entries = await getCollection('works');
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { work: entry } satisfies Props,
+  }));
+};
+
+interface Props {
+  work: CollectionEntry<'works'>;
+}
+const { work } = Astro.props;
+const { Content } = await work.render();
+const WorkComponent = workComponents[work.slug];
+---
+
+<MainLayout title={work.data.title}>
+  <div
+    class={css({
+      maxW: 'token(breakpoints.md)',
+      mx: 'auto',
+    })}
+  >
+    <div
+      class={css({
+        display: 'grid',
+        gridTemplateColumns: '1fr',
+        minH: '30vh',
+        mt: 24,
+        p: '1px',
+        borderRadius: 6,
+        background:
+          'linear-gradient(160deg, token(colors.gray.500), token(colors.gray.600) 20%, token(colors.gray.800))',
+      })}
+    >
+      <div
+        class={css({
+          borderRadius: 5,
+          bg: 'gray.800',
+        })}
+      >
+        <WorkComponent />
+      </div>
+    </div>
+    <h1
+      class={css({
+        mt: 16,
+        fontSize: '1.5rem',
+        lineHeight: 1.5,
+        fontWeight: 600,
+      })}
+    >
+      {work.data.title}
+    </h1>
+    <div
+      class={css({
+        '& p': {
+          mt: 4,
+          lineHeight: 1.7,
+        },
+      })}
+    >
+      <Content />
+    </div>
+  </div>
+</MainLayout>

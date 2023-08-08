@@ -49,7 +49,13 @@ const computedTitle = title ? `${title} - G4RDS.dev` : 'G4RDS.dev';
             class={flex({
               alignItems: 'center',
               gap: 4,
-              '& a': { color: 'text.light' },
+              '& a': {
+                color: 'text.dark',
+                transition: '0.1s token(easings.easeOut)',
+                _hover: {
+                  color: 'text.light',
+                },
+              },
             })}
           >
             <li>
